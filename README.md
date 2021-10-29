@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple pizza playground application using [Create React App](https://facebook.github.io/create-react-app/) and [GraphQL](https://graphql.org/).
 
 ## Available Scripts
 
