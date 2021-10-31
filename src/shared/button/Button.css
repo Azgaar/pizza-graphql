@@ -19,7 +19,22 @@
 }
 
 .button--secondary {
-  border: 1px solid var(--primary-color);
+  border: 2px solid var(--primary-color);
+  background-color: #ffffff;
+  color: var(--primary-color);
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.button--secondary:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  filter: none;
+}
+
+.button--secondary:active {
+  transform: translateX(1px);
 }
 
 .button--filter {

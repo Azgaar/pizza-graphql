@@ -1,7 +1,7 @@
 import {Button} from "shared/button/Button";
 import {CartIcon} from "shared/cartIcon/CartIcon";
 import {Textual} from "shared/text/Textual";
-import {currency} from "config/price";
+import {formatCurrency} from "utils/price";
 import styles from "./Header.module.css";
 
 export const Header = () => {
@@ -24,11 +24,7 @@ export const Header = () => {
       </div>
       <div>
         <Button className={styles.cartButton}>
-          <span>
-            {currency}
-            {space}
-            {cartPrice}
-          </span>
+          <span>{formatCurrency(cartPrice)}</span>
           <span>
             <CartIcon />
             {space}

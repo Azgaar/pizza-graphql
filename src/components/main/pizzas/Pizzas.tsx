@@ -1,8 +1,7 @@
-import {useMemo, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 
-import {pizzas} from "../../../mocks/pizzas";
-import {Textual} from "../../../shared/text/Textual";
-import {formatCurrency, getPrice} from "../../../utils/price";
+import {PizzaCard} from "components/pizzaCard/PizzaCard";
+import {pizzas as mockedPizzas} from "mocks/pizzas";
 import styles from "./Pizzas.module.css";
 
 interface IPizzasProps {
@@ -11,8 +10,8 @@ interface IPizzasProps {
 }
 
 export const Pizzas = ({filter, sort}: IPizzasProps) => {
-  const sortedPizzas = useMemo(() => {
-    const filtered = filter === "all" ? pizzas : pizzas.filter(({categories}) => categories.includes(filter));
+  const getPizzas = useCallback(() => {
+    const filtered = filter === "all" ? mockedPizzas : mockedPizzas.filter(({categories}) => categories.includes(filter));
     const sorted = filtered.sort((a, b) => {
       if (sort === "price") {
         return a.basePrice - b.basePrice;
@@ -32,33 +31,17 @@ export const Pizzas = ({filter, sort}: IPizzasProps) => {
     return sorted;
   }, [filter, sort]);
 
-  const [pizzasData, setPizzasData] = useState(
-    sortedPizzas.map(({id, name, imageUrl, defaultDought, defaultSize, basePrice}) => {
-      const price = getPrice(basePrice, defaultSize);
+  const [pizzas, setPizzas] = useState<IPizza[]>([]);
 
-      return {
-        id,
-        name,
-        imageUrl,
-        dought: defaultDought,
-        size: "small",
-        price: price,
-        displayPrice: formatCurrency(price)
-      };
-    })
-  );
+  useEffect(() => {
+    setPizzas(getPizzas);
+  }, [getPizzas, filter, sort]);
 
   return (
     <div className={styles.pizzas}>
-      {pizzasData.map(({id, name, displayPrice, imageUrl}) => {
-        return (
-          <div key={id}>
-            <img src={imageUrl} alt={name} />
-            <Textual type="heading2">{name}</Textual>
-            <Textual type="heading2">{displayPrice}</Textual>
-          </div>
-        );
-      })}
+      {pizzas.map(pizza => (
+        <PizzaCard key={pizza.id} pizza={pizza} />
+      ))}
     </div>
   );
 };

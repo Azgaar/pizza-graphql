@@ -1,9 +1,6 @@
 type TFilter = "all" | "meat" | "vegan" | "grill" | "hot" | "closed";
-
 type TSort = "popularity" | "price" | "name";
-
-type TDough = "thin" | "regular";
-
+type TDough = "thin" | "regular" | "thick";
 type TSize = "small" | "medium" | "large";
 
 interface IPizza {
@@ -12,7 +9,7 @@ interface IPizza {
   imageUrl: string;
   basePrice: number;
   categories: TFilter[];
-  defaultDought: TDough;
+  defaultDough: TDough;
   defaultSize: TSize;
   popularity: number;
 }
