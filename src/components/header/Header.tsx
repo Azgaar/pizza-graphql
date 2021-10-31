@@ -1,14 +1,8 @@
-import {Button} from "shared/button/Button";
-import {CartIcon} from "shared/cartIcon/CartIcon";
 import {Textual} from "shared/text/Textual";
-import {formatCurrency} from "utils/price";
+import {ShoppingCardButton} from "./shoppingCardButton/ShoppingCardButton";
 import styles from "./Header.module.css";
 
 export const Header = () => {
-  const cartPrice = 21.23;
-  const cartItems = 2;
-  const space = "\u00A0";
-
   return (
     <header className="container">
       <div>
@@ -23,14 +17,7 @@ export const Header = () => {
         </div>
       </div>
       <div>
-        <Button className={styles.cartButton}>
-          <span>{formatCurrency(cartPrice)}</span>
-          <span>
-            <CartIcon />
-            {space}
-            {cartItems}
-          </span>
-        </Button>
+        <ShoppingCardButton />
       </div>
     </header>
   );

@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 
+import {useCard} from "context/ShoppingCardContext";
 import {Textual} from "shared/text/Textual";
 import {PizzaTypeButton} from "./pizzaTypeButton/PizzaTypeButton";
 import {Button} from "shared/button/Button";
@@ -19,7 +20,8 @@ enum ESize {
 }
 
 export const PizzaCard = ({pizza}: {pizza: IPizza}) => {
-  const {name, basePrice, imageUrl, defaultDough, defaultSize} = pizza;
+  const {id, name, basePrice, imageUrl, defaultDough, defaultSize} = pizza;
+  const {add} = useCard();
 
   const [dough, setDough] = useState(defaultDough);
   const [size, setSize] = useState(defaultSize);
@@ -31,7 +33,7 @@ export const PizzaCard = ({pizza}: {pizza: IPizza}) => {
   }, [basePrice, size, dough]);
 
   const addToCard = () => {
-    console.log(`Added ${name} to cart`);
+    add({id, name, dough, size, price, imageUrl});
   };
 
   return (

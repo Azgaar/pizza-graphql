@@ -13,3 +13,12 @@ interface IPizza {
   defaultSize: TSize;
   popularity: number;
 }
+
+interface ICardElement {
+  id: number;
+  name: string;
+  imageUrl: string;
+  price: number;
+  dough: TDough;
+  size: TSize;
+}

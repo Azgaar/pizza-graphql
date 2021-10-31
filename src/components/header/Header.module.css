@@ -26,13 +26,6 @@ header > div:first-child > img {
   aspect-ratio: 1;
 }
 
-.cartButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
 @media (max-width: 420px) {
   .title {
     font-size: 18px;
