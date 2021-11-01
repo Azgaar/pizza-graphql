@@ -1,0 +1,15 @@
+.shoppingCardElement {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 5fr 1fr 1fr 1fr;
+}
+
+.shoppingCardElement > img {
+  width: 80px;
+  height: 80px;
+}
+
+.shoppingCardElementInfo {
+  display: flex;
+  flex-direction: column;
+}

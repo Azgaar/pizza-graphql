@@ -3,7 +3,3 @@
   height: calc(100vh - var(--header-height));
   overflow-y: auto;
 }
-
-.heading {
-  margin-top: 32px;
-}

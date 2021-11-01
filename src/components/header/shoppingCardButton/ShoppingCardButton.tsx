@@ -7,18 +7,12 @@ import styles from "./ShoppingCardButton.module.css";
 const space = "\u00A0";
 
 export const ShoppingCardButton = () => {
-  const {list} = useCard();
-
-  const cardElements = list();
-  const cardPrice = roundPrice(cardElements.reduce((acc, element) => acc + element.price, 0));
-  const cardItems = cardElements.length;
-
-  const openCard = () => {
-    window.open("/shopping-card", "_blank");
-  };
+  const {card, toggle} = useCard();
+  const cardPrice = roundPrice(card.reduce((acc, element) => acc + element.price, 0));
+  const cardItems = card.length;
 
   return (
-    <Button className={styles.cartButton} onClick={openCard}>
+    <Button className={styles.cartButton} onClick={toggle}>
       {cardItems > 0 && <span>{formatCurrency(cardPrice)}</span>}
       <span>
         <CartIcon />

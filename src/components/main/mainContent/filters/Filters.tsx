@@ -1,8 +1,8 @@
 import {Dispatch, SetStateAction, ChangeEvent} from "react";
 
-import {Button} from "../../../shared/button/Button";
-import {Textual} from "../../../shared/text/Textual";
-import {filters, sortOptions} from "../../../config/filters";
+import {Button} from "../../../../shared/button/Button";
+import {Textual} from "../../../../shared/text/Textual";
+import {filters, sortOptions} from "../../../../config/filters";
 import styles from "./Filters.module.css";
 
 interface IFiltersProps {

@@ -22,3 +22,7 @@ interface ICardElement {
   dough: TDough;
   size: TSize;
 }
+
+interface ICardElementGrouped extends ICardElement {
+  quantity: number;
+}
