@@ -14,7 +14,7 @@ interface IPizza {
   popularity: number;
 }
 
-interface ICardElement {
+interface ICardData {
   id: number;
   name: string;
   imageUrl: string;
@@ -23,6 +23,7 @@ interface ICardElement {
   size: TSize;
 }
 
-interface ICardElementGrouped extends ICardElement {
+interface ICardElement extends ICardData {
+  group: string;
   quantity: number;
 }

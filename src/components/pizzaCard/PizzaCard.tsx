@@ -55,7 +55,7 @@ export const PizzaCard = ({pizza}: {pizza: IPizza}) => {
       <div className={styles.bottomSection}>
         <Textual type="heading2">{displayPrice}</Textual>
         <Button type="secondary" onClick={addToCard}>
-          + Add to card
+          + Add
         </Button>
       </div>
     </div>

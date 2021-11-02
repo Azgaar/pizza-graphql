@@ -8,8 +8,8 @@ const space = "\u00A0";
 
 export const ShoppingCardButton = () => {
   const {card, toggle} = useCard();
-  const cardPrice = roundPrice(card.reduce((acc, element) => acc + element.price, 0));
-  const cardItems = card.length;
+  const cardPrice = roundPrice(card.reduce((acc, {price, quantity}) => acc + price * quantity, 0));
+  const cardItems = roundPrice(card.reduce((acc, {quantity}) => acc + quantity, 0));
 
   return (
     <Button className={styles.cartButton} onClick={toggle}>

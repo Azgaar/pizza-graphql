@@ -1,7 +1,10 @@
 .shoppingCardElement {
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr 5fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 7fr 3fr 3fr 1fr;
+  height: 140px;
+  border-top: 1px solid #f4f4f4;
+  justify-items: center;
 }
 
 .shoppingCardElement > img {
@@ -12,4 +15,27 @@
 .shoppingCardElementInfo {
   display: flex;
   flex-direction: column;
+  justify-self: flex-start;
+}
+
+.cardButton {
+  background-color: transparent;
+  cursor: pointer;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  border-radius: 50%;
+  font-size: 20px;
+  width: 32px;
+  height: 32px;
+  margin: 9px;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.cardButton:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.cardButton:active {
+  transform: translateY(1px);
 }

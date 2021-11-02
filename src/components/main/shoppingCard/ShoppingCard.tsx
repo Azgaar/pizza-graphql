@@ -8,18 +8,6 @@ import styles from "./ShoppingCard.module.css";
 export const ShoppingCard = () => {
   const {card, clear} = useCard();
 
-  const groupedCardElements = card.reduce((object, element) => {
-    const {id, price, dough, size} = element;
-    const key = `${id}-${dough}-${size}-${price}`;
-    if (!object[key]) {
-      object[key] = {...element, quantity: 1};
-    } else {
-      object[key].quantity += 1;
-    }
-
-    return object;
-  }, {} as {[key: string]: ICardElementGrouped});
-
   return (
     <div className={styles.shoppingCard}>
       <div className={styles.shoppingCardHead}>
@@ -37,8 +25,8 @@ export const ShoppingCard = () => {
       </div>
 
       <div>
-        {Object.values(groupedCardElements).map(group => (
-          <ShoppingCardElement key={group.id} {...group} />
+        {card.map(element => (
+          <ShoppingCardElement key={element.group} {...element} />
         ))}
       </div>
     </div>
