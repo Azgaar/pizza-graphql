@@ -1,6 +1,6 @@
 import "./Textual.css";
 
-type TTextualType = "header" | "heading" | "heading2" | "primary" | "secondary";
+type TTextualType = "header" | "heading" | "heading2" | "subtitle" | "primary" | "secondary";
 
 interface ITextualProps {
   children: React.ReactNode;
