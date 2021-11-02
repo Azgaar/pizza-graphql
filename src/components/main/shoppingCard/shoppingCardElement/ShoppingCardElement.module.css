@@ -18,6 +18,11 @@
   justify-self: flex-start;
 }
 
+.quantity {
+  display: flex;
+  align-items: center;
+}
+
 .cardButton {
   background-color: transparent;
   cursor: pointer;
@@ -38,4 +43,19 @@
 
 .cardButton:active {
   transform: translateY(1px);
+}
+
+@media (max-width: 420px) {
+  .shoppingCardElement {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    height: 140px;
+    position: relative;
+  }
+
+  .shoppingCardElement > *:last-child {
+    position: absolute;
+    left: 90%;
+    bottom: 3%;
+  }
 }

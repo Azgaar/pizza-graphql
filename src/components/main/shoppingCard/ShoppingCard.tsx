@@ -51,7 +51,7 @@ export const ShoppingCard = () => {
         ))}
       </div>
 
-      <div className={styles.spaceBetween}>
+      <div className={styles.totalLine}>
         <Textual type="subtitle">
           Total count: <strong>{totalCount}</strong>
         </Textual>
@@ -60,7 +60,7 @@ export const ShoppingCard = () => {
         </Textual>
       </div>
 
-      <div className={styles.spaceBetween}>
+      <div className={styles.buttons}>
         <Button type="secondary" onClick={toggle}>
           Go back
         </Button>

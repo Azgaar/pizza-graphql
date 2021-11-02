@@ -1,7 +1,7 @@
 .pizzas {
   margin: 40px 0 60px;
   display: grid;
-  --piza-card-min-size: 180px;
+  --piza-card-min-size: 200px;
   grid-template-columns: repeat(auto-fill, minmax(var(--piza-card-min-size), 1fr));
   grid-column-gap: 35px;
   grid-row-gap: 50px;

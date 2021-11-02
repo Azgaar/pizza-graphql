@@ -30,7 +30,7 @@ export const ShoppingCardElement = ({group, name, imageUrl, price, dough, size, 
           {dough} dough, {size} size
         </Textual>
       </div>
-      <div>
+      <div className={styles.quantity}>
         <button title="Decrease quantity" className={styles.cardButton} onClick={decreaseQuantity}>
           −
         </button>
