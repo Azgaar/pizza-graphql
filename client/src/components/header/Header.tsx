@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 import {Textual} from "shared/text/Textual";
 import {ShoppingCardButton} from "./shoppingCardButton/ShoppingCardButton";
 import styles from "./Header.module.css";
@@ -16,7 +18,8 @@ export const Header = () => {
           </Textual>
         </div>
       </div>
-      <div>
+      <div className={styles.buttons}>
+        <Link to="/orders">Orders</Link>
         <ShoppingCardButton />
       </div>
     </header>
