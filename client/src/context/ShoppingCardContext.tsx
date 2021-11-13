@@ -1,5 +1,7 @@
 import {useState, createContext, useContext, ReactNode} from "react";
 
+import {ICardData, ICardElement} from "types";
+
 interface IShoppingCardContext {
   isOpen: boolean;
   toggle: () => void;

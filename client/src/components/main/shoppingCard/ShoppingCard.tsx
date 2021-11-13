@@ -1,3 +1,6 @@
+import {useMutation} from "@apollo/client";
+
+import {CREATE_ORDER} from "gql/createOrder";
 import {useCard} from "context/ShoppingCardContext";
 import {Textual} from "shared/text/Textual";
 import {Button} from "shared/button/Button";
@@ -10,8 +13,22 @@ import styles from "./ShoppingCard.module.css";
 
 export const ShoppingCard = () => {
   const {card, clear, toggle} = useCard();
-  const totalCount = card.reduce((acc, item) => acc + item.quantity, 0);
-  const totalPrice = formatCurrency(roundPrice(card.reduce((acc, item) => acc + item.price * item.quantity, 0)));
+  const totalAmount = card.reduce((acc, item) => acc + item.quantity, 0);
+  const totalPrice = roundPrice(card.reduce((acc, item) => acc + item.price * item.quantity, 0));
+
+  const [createOrder] = useMutation(CREATE_ORDER, {
+    onError: error => console.error(error),
+    onCompleted: data => console.log(data)
+  });
+
+  const handleOrderCreate = () => {
+    const orderedPizzas = card.map(({dough, size, price, quantity, name}) => {
+      return {dough, size, price, amount: quantity, pizzaName: name};
+    });
+
+    const order = {totalPrice, totalAmount, orderedPizzas};
+    createOrder({variables: {input: order}});
+  };
 
   if (!card.length) {
     return (
@@ -53,10 +70,10 @@ export const ShoppingCard = () => {
 
       <div className={styles.totalLine}>
         <Textual type="subtitle">
-          Total count: <strong>{totalCount}</strong>
+          Total count: <strong>{totalAmount}</strong>
         </Textual>
         <Textual type="subtitle">
-          Total price: <strong className={styles.totalPrice}>{totalPrice}</strong>
+          Total price: <strong className={styles.totalPrice}>{formatCurrency(totalPrice)}</strong>
         </Textual>
       </div>
 
@@ -64,8 +81,8 @@ export const ShoppingCard = () => {
         <Button type="secondary" onClick={toggle}>
           Go back
         </Button>
-        <Button type="primary" onClick={() => alert("Not implemented yet")}>
-          Order now!
+        <Button type="primary" onClick={handleOrderCreate}>
+          Order now
         </Button>
       </div>
     </div>
