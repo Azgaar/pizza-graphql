@@ -10,6 +10,7 @@ const PizzaType = new GraphQLObjectType({
     name: {type: new GraphQLNonNull(GraphQLString)},
     image: {type: new GraphQLNonNull(GraphQLString)},
     popularity: {type: new GraphQLNonNull(GraphQLInt)},
+    categories: {type: new GraphQLNonNull(new GraphQLList(GraphQLString))},
     modifications: {
       type: GraphQLList(ModificationType),
       resolve(parentValue) {

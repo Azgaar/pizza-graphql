@@ -1,8 +1,9 @@
 import {Dispatch, SetStateAction, ChangeEvent} from "react";
 
-import {Button} from "../../../../shared/button/Button";
-import {Textual} from "../../../../shared/text/Textual";
-import {filters, sortOptions} from "../../../../config/filters";
+import {filters, sortOptions} from "config/filters";
+import {Button} from "shared/button/Button";
+import {Textual} from "shared/text/Textual";
+import {TFilter, TSort} from "types";
 import styles from "./Filters.module.css";
 
 interface IFiltersProps {
@@ -20,14 +21,14 @@ export const Filters = ({filter, setFilter, sort, setSort}: IFiltersProps) => {
   return (
     <div className={styles.filters}>
       <div>
-        {filters.map(({id, name}) => {
-          const isActive = filter === id;
+        {filters.map(filterOption => {
+          const isActive = filter === filterOption;
           const type = isActive ? "filter-active" : "filter";
-          const handleClick = () => setFilter(id);
+          const handleClick = () => setFilter(filterOption);
 
           return (
-            <Button key={id} type={type} onClick={handleClick}>
-              {name}
+            <Button key={filterOption} type={type} onClick={handleClick}>
+              {filterOption}
             </Button>
           );
         })}
@@ -35,9 +36,9 @@ export const Filters = ({filter, setFilter, sort, setSort}: IFiltersProps) => {
       <div>
         <Textual type="primary">Sort by:</Textual>
         <select className={styles.sort} onChange={handleSortChange} value={sort}>
-          {sortOptions.map(({id, name}) => (
-            <option key={id} value={id}>
-              {name}
+          {sortOptions.map(sortOption => (
+            <option key={sortOption} value={sortOption}>
+              {sortOption}
             </option>
           ))}
         </select>

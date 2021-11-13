@@ -1,9 +1,11 @@
+import {IPizza, TFilter, TSort} from "types";
+
 type SortFunction = {
   [key in TSort]: (a: IPizza, b: IPizza) => number;
 };
 
 const sortBy: SortFunction = {
-  price: (a, b) => a.basePrice - b.basePrice,
+  price: (a, b) => a.modifications[0]?.price - b.modifications[0]?.price,
   popularity: (a, b) => b.popularity - a.popularity,
   name: (a, b) => a.name.localeCompare(b.name)
 };

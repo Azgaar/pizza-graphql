@@ -7,6 +7,7 @@ export const GET_PIZZAS = gql`
       name
       image
       popularity
+      categories
       modifications {
         dough
         size

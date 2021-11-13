@@ -8,16 +8,26 @@
   width: 100%;
 }
 
+.pizzaCard > span {
+  margin: 10px 0 14px;
+}
+
 .pizzaType {
   display: flex;
   flex-direction: column;
   background-color: #f3f3f3;
   border-radius: 10px;
-  margin: 20px 0 14px;
+  margin-bottom: 14px;
   padding: 3px;
+  width: 100%;
 }
 
-.pizzaType > div {
+.pizzaType > div:first-child {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.pizzaType > div:last-child {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }

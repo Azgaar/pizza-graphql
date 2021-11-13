@@ -6,22 +6,13 @@ import {PizzaTypeButton} from "./pizzaTypeButton/PizzaTypeButton";
 import {Button} from "shared/button/Button";
 import {formatCurrency, getPrice} from "utils/price";
 import {IMAGES_URL} from "config/paths";
+import {doughTypes, sizeTypes, sizeUnit} from "config/modifications";
+import {IPizza} from "types";
 import styles from "./PizzaCard.module.css";
 
-enum EDough {
-  THIN = "thin",
-  REGURAR = "regular",
-  THICK = "thick"
-}
-
-enum ESize {
-  SMALL = "small",
-  MEDIUM = "medium",
-  LARGE = "large"
-}
-
 const PizzaCardComponent = ({pizza}: {pizza: IPizza}) => {
-  const {id, name, basePrice, image, defaultDough, defaultSize} = pizza;
+  const {id, name, image, modifications} = pizza;
+  const {dough: defaultDough, price: basePrice, size: defaultSize} = modifications[0];
   const {add} = useCard();
 
   const [dough, setDough] = useState(defaultDough);
@@ -43,13 +34,13 @@ const PizzaCardComponent = ({pizza}: {pizza: IPizza}) => {
       <Textual type="heading2">{name}</Textual>
       <div className={styles.pizzaType}>
         <div>
-          {Object.values(EDough).map(doughType => (
-            <PizzaTypeButton key={doughType} value={doughType} isActive={dough === doughType} onClick={() => setDough(doughType)} />
+          {doughTypes.map(doughType => (
+            <PizzaTypeButton key={doughType} value={doughType} isActive={dough === doughType} onClick={() => setDough(doughType)} unit="dough" />
           ))}
         </div>
         <div>
-          {Object.values(ESize).map(sizeType => (
-            <PizzaTypeButton key={sizeType} value={sizeType} isActive={size === sizeType} onClick={() => setSize(sizeType)} />
+          {sizeTypes.map(sizeType => (
+            <PizzaTypeButton key={sizeType} value={sizeType} isActive={size === sizeType} onClick={() => setSize(sizeType)} unit={sizeUnit} />
           ))}
         </div>
       </div>

@@ -2,6 +2,7 @@ import {useCard} from "context/ShoppingCardContext";
 import {Textual} from "shared/text/Textual";
 import {roundPrice, formatCurrency} from "utils/price";
 import {IMAGES_URL} from "config/paths";
+import {ICardElement} from "types";
 import styles from "./ShoppingCardElement.module.css";
 
 export const ShoppingCardElement = ({group, name, image, price, dough, size, quantity}: ICardElement) => {
