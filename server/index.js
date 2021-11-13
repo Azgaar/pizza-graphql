@@ -13,5 +13,5 @@ app.use(express.json());
 app.use("/graphql", graphqlHTTP({schema, graphiql: true}));
 
 app.listen(PORT, () => {
-  console.log("Server started...");
+  console.info("Server started...");
 });

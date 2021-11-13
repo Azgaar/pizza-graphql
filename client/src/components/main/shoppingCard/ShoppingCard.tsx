@@ -20,7 +20,10 @@ export const ShoppingCard = () => {
 
   const [createOrder] = useMutation(CREATE_ORDER, {
     onError: error => console.error(error),
-    onCompleted: () => navigate("/orders")
+    onCompleted: () => {
+      clear();
+      navigate("/orders");
+    }
   });
 
   const handleOrderCreate = () => {
