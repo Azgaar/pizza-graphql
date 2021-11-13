@@ -1,3 +1,4 @@
+import {useNavigate} from "react-router-dom";
 import {useMutation} from "@apollo/client";
 
 import {CREATE_ORDER} from "gql/createOrder";
@@ -12,13 +13,14 @@ import {roundPrice, formatCurrency} from "utils/price";
 import styles from "./ShoppingCard.module.css";
 
 export const ShoppingCard = () => {
-  const {card, clear, toggle} = useCard();
+  const navigate = useNavigate();
+  const {card, clear} = useCard();
   const totalAmount = card.reduce((acc, item) => acc + item.quantity, 0);
   const totalPrice = roundPrice(card.reduce((acc, item) => acc + item.price * item.quantity, 0));
 
   const [createOrder] = useMutation(CREATE_ORDER, {
     onError: error => console.error(error),
-    onCompleted: data => console.log(data)
+    onCompleted: () => navigate("/orders")
   });
 
   const handleOrderCreate = () => {
@@ -30,6 +32,10 @@ export const ShoppingCard = () => {
     createOrder({variables: {input: order}});
   };
 
+  const handleBack = () => {
+    navigate("/");
+  };
+
   if (!card.length) {
     return (
       <div className={styles.emptyCard}>
@@ -39,7 +45,7 @@ export const ShoppingCard = () => {
         <Textual type="secondary">It looks you did not add any pizzas to the card yet.</Textual>
         <Textual type="secondary">You can add items to the card by clicking on the Add button</Textual>
         <EmptyCardImage />
-        <Button type="filter-active" onClick={toggle}>
+        <Button type="filter-active" onClick={handleBack}>
           Go back
         </Button>
       </div>
@@ -78,7 +84,7 @@ export const ShoppingCard = () => {
       </div>
 
       <div className={styles.buttons}>
-        <Button type="secondary" onClick={toggle}>
+        <Button type="secondary" onClick={handleBack}>
           Go back
         </Button>
         <Button type="primary" onClick={handleOrderCreate}>

@@ -3,8 +3,6 @@ import {useState, createContext, useContext, ReactNode} from "react";
 import {ICardData, ICardElement} from "types";
 
 interface IShoppingCardContext {
-  isOpen: boolean;
-  toggle: () => void;
   card: ICardElement[];
   add: (element: ICardData) => void;
   remove: (group: string) => void;
@@ -14,8 +12,6 @@ interface IShoppingCardContext {
 }
 
 const ShoppingCardContext = createContext({
-  isOpen: false,
-  toggle: () => {},
   card: [],
   add: () => {},
   remove: () => {},
@@ -25,10 +21,7 @@ const ShoppingCardContext = createContext({
 } as IShoppingCardContext);
 
 export const ShoppingCardProvider = ({children}: {children: ReactNode}) => {
-  const [isOpen, setOpen] = useState(false);
   const [card, setCard] = useState<ICardElement[]>([]);
-
-  const toggle = () => setOpen(open => !open);
 
   const increase = (group: string) => {
     setCard(card.map(item => (item.group === group ? {...item, quantity: item.quantity + 1} : item)));
@@ -56,7 +49,7 @@ export const ShoppingCardProvider = ({children}: {children: ReactNode}) => {
     setCard([]);
   };
 
-  return <ShoppingCardContext.Provider value={{isOpen, card, toggle, add, remove, clear, increase, decrease}}>{children}</ShoppingCardContext.Provider>;
+  return <ShoppingCardContext.Provider value={{card, add, remove, clear, increase, decrease}}>{children}</ShoppingCardContext.Provider>;
 };
 
 export const useCard = () => useContext(ShoppingCardContext);
