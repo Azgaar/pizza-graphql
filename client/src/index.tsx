@@ -1,6 +1,7 @@
 import {StrictMode} from "react";
 import ReactDOM from "react-dom";
 import {ApolloClient, ApolloProvider, InMemoryCache} from "@apollo/client";
+
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./global.css";
