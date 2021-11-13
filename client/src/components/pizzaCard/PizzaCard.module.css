@@ -5,9 +5,7 @@
 }
 
 .pizzaCard > img {
-  width: 80%;
-  /* add margin as images as not centered */
-  margin-left: 20px;
+  width: 100%;
 }
 
 .pizzaType {

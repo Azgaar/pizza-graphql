@@ -6,7 +6,7 @@ type TSize = "small" | "medium" | "large";
 interface IPizza {
   id: number;
   name: string;
-  imageUrl: string;
+  image: string;
   basePrice: number;
   categories: TFilter[];
   defaultDough: TDough;
@@ -17,7 +17,7 @@ interface IPizza {
 interface ICardData {
   id: number;
   name: string;
-  imageUrl: string;
+  image: string;
   price: number;
   dough: TDough;
   size: TSize;

@@ -1,10 +1,11 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState, memo} from "react";
 
 import {useCard} from "context/ShoppingCardContext";
 import {Textual} from "shared/text/Textual";
 import {PizzaTypeButton} from "./pizzaTypeButton/PizzaTypeButton";
 import {Button} from "shared/button/Button";
 import {formatCurrency, getPrice} from "utils/price";
+import {IMAGES_URL} from "config/paths";
 import styles from "./PizzaCard.module.css";
 
 enum EDough {
@@ -19,8 +20,8 @@ enum ESize {
   LARGE = "large"
 }
 
-export const PizzaCard = ({pizza}: {pizza: IPizza}) => {
-  const {id, name, basePrice, imageUrl, defaultDough, defaultSize} = pizza;
+const PizzaCardComponent = ({pizza}: {pizza: IPizza}) => {
+  const {id, name, basePrice, image, defaultDough, defaultSize} = pizza;
   const {add} = useCard();
 
   const [dough, setDough] = useState(defaultDough);
@@ -33,12 +34,12 @@ export const PizzaCard = ({pizza}: {pizza: IPizza}) => {
   }, [basePrice, size, dough]);
 
   const addToCard = () => {
-    add({id, name, dough, size, price, imageUrl});
+    add({id, name, dough, size, price, image});
   };
 
   return (
     <div className={styles.pizzaCard}>
-      <img src={imageUrl} alt={name} />
+      <img src={`${IMAGES_URL}/${image}`} alt={name} />
       <Textual type="heading2">{name}</Textual>
       <div className={styles.pizzaType}>
         <div>
@@ -61,3 +62,5 @@ export const PizzaCard = ({pizza}: {pizza: IPizza}) => {
     </div>
   );
 };
+
+export const PizzaCard = memo(PizzaCardComponent);

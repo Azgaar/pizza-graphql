@@ -3,11 +3,12 @@ import ReactDOM from "react-dom";
 import {ApolloClient, ApolloProvider, InMemoryCache} from "@apollo/client";
 
 import App from "./App";
+import {GRAPHQL_URL} from "config/paths";
 import reportWebVitals from "./reportWebVitals";
 import "./global.css";
 
 const client = new ApolloClient({
-  uri: "http://localhost:3001/graphql",
+  uri: GRAPHQL_URL,
   cache: new InMemoryCache()
 });
 
