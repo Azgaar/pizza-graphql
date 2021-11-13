@@ -34,3 +34,18 @@ interface ICardElement extends ICardData {
   group: string;
   quantity: number;
 }
+
+interface IOrder {
+  id: number;
+  totalPrice: number;
+  totalAmount: number;
+  orderedPizzas: IOrderElement[];
+}
+
+interface IOrderElement {
+  dough: TDough;
+  size: TSize;
+  price: number;
+  amount: number;
+  pizzaName: string;
+}

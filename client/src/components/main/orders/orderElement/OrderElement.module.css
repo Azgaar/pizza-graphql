@@ -1,0 +1,8 @@
+.orderElement {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 2fr 2fr 2fr 1fr 1fr;
+  height: 40px;
+  justify-items: center;
+  margin-bottom: 20px;
+}
