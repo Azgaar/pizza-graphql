@@ -3,6 +3,7 @@ import {Textual} from "shared/text/Textual";
 import {roundPrice, formatCurrency} from "utils/price";
 import {IMAGES_URL} from "config/paths";
 import {ICardElement} from "types";
+import {sizeUnit} from "config/modifications";
 import styles from "./ShoppingCardElement.module.css";
 
 export const ShoppingCardElement = ({group, name, image, price, dough, size, quantity}: ICardElement) => {
@@ -29,7 +30,7 @@ export const ShoppingCardElement = ({group, name, image, price, dough, size, qua
       <div className={styles.shoppingCardElementInfo}>
         <Textual type="heading2">{name}</Textual>
         <Textual type="secondary">
-          {dough} dough, {size} size
+          {dough} dough, {size} {sizeUnit}
         </Textual>
       </div>
       <div className={styles.quantity}>

@@ -1,4 +1,4 @@
-import {useEffect, useState, memo} from "react";
+import {useState, memo} from "react";
 
 import {useCard} from "context/ShoppingCardContext";
 import {Textual} from "shared/text/Textual";
@@ -7,22 +7,38 @@ import {Button} from "shared/button/Button";
 import {formatCurrency, getPrice} from "utils/price";
 import {IMAGES_URL} from "config/paths";
 import {doughTypes, sizeTypes, sizeUnit} from "config/modifications";
-import {IPizza} from "types";
+import {IPizza, TDough, TSize} from "types";
 import styles from "./PizzaCard.module.css";
 
 const PizzaCardComponent = ({pizza}: {pizza: IPizza}) => {
   const {id, name, image, modifications} = pizza;
-  const {dough: defaultDough, price: basePrice, size: defaultSize} = modifications[0];
+  const {dough: initialDough, price: initialPrice, size: initialSize} = modifications[0];
   const {add} = useCard();
 
-  const [dough, setDough] = useState(defaultDough);
-  const [size, setSize] = useState(defaultSize);
-  const [price, setPrice] = useState(basePrice);
+  const [dough, setDough] = useState(initialDough);
+  const [size, setSize] = useState(initialSize);
+  const [price, setPrice] = useState(initialPrice);
   const displayPrice = formatCurrency(price);
 
-  useEffect(() => {
-    setPrice(getPrice(basePrice, size, dough));
-  }, [basePrice, size, dough]);
+  const changePrice = (dough: TDough, size: TSize) => {
+    const modification = modifications.find(type => type.dough === dough && type.size === size);
+    if (modification) setPrice(getPrice(modification.price));
+  };
+
+  const handleDoughChange = (newDough: TDough) => {
+    setDough(newDough);
+    changePrice(newDough, size);
+  };
+
+  const handleSizeChange = (newSize: TSize) => {
+    setSize(newSize);
+    changePrice(dough, newSize);
+  };
+
+  const checkIfDisabled = (dough: TDough, size: TSize) => {
+    const available = modifications.find(type => type.dough === dough && type.size === size);
+    return !available;
+  };
 
   const addToCard = () => {
     add({id, name, dough, size, price, image});
@@ -34,14 +50,20 @@ const PizzaCardComponent = ({pizza}: {pizza: IPizza}) => {
       <Textual type="heading2">{name}</Textual>
       <div className={styles.pizzaType}>
         <div>
-          {doughTypes.map(doughType => (
-            <PizzaTypeButton key={doughType} value={doughType} isActive={dough === doughType} onClick={() => setDough(doughType)} unit="dough" />
-          ))}
+          {doughTypes.map(doughType => {
+            const isActive = doughType === dough;
+            const isDisabled = checkIfDisabled(doughType, size);
+            const onClick = () => handleDoughChange(doughType);
+            return <PizzaTypeButton key={doughType} value={doughType} isActive={isActive} isDisabled={isDisabled} onClick={onClick} unit="dough" />;
+          })}
         </div>
         <div>
-          {sizeTypes.map(sizeType => (
-            <PizzaTypeButton key={sizeType} value={sizeType} isActive={size === sizeType} onClick={() => setSize(sizeType)} unit={sizeUnit} />
-          ))}
+          {sizeTypes.map(sizeType => {
+            const isActive = sizeType === size;
+            const isDisabled = checkIfDisabled(dough, sizeType);
+            const onClick = () => handleSizeChange(sizeType);
+            return <PizzaTypeButton key={sizeType} value={sizeType} isActive={isActive} isDisabled={isDisabled} onClick={onClick} unit={sizeUnit} />;
+          })}
         </div>
       </div>
       <div className={styles.bottomSection}>

@@ -1,7 +1,7 @@
 [
   {
     "id": "b51b36d2-579d-4e50-9364-a1886891350f",
-    "pizzasIds": ["dcc4dc00-7ba7-45bb-a393-b4567cb44f60", "4c7f7c2c-a56b-4a21-bc01-62d2ef6f6d87"],
+    "pizzasIds": ["4c7f7c2c-a56b-4a21-bc01-62d2ef6f6d87"],
     "dough": "thin",
     "size": 26,
     "price": 7.99
@@ -35,13 +35,6 @@
     "price": 15.99
   },
   {
-    "id": "64749ee6-4a1e-49d1-ae61-e69bbbe6c87a",
-    "pizzasIds": ["fc169321-941f-4ff3-ace8-7ab0df9943e8"],
-    "dough": "thin",
-    "size": 26,
-    "price": 16.99
-  },
-  {
     "id": "0b988a47-f503-4866-af93-2518b915db66",
     "pizzasIds": ["aad94bf3-cc29-462f-9ddd-6d6424ebcdf1"],
     "dough": "thin",
@@ -50,7 +43,7 @@
   },
   {
     "id": "601c4f09-0210-4995-ac61-309aa80d81c9",
-    "pizzasIds": ["dcc4dc00-7ba7-45bb-a393-b4567cb44f60", "4c7f7c2c-a56b-4a21-bc01-62d2ef6f6d87"],
+    "pizzasIds": ["4c7f7c2c-a56b-4a21-bc01-62d2ef6f6d87"],
     "dough": "thin",
     "size": 30,
     "price": 15.99
@@ -78,7 +71,7 @@
   },
   {
     "id": "ffccbc05-ad6a-41dd-b119-6bb925a4b029",
-    "pizzasIds": ["dcc4dc00-7ba7-45bb-a393-b4567cb44f60", "4c7f7c2c-a56b-4a21-bc01-62d2ef6f6d87"],
+    "pizzasIds": ["4c7f7c2c-a56b-4a21-bc01-62d2ef6f6d87"],
     "dough": "thin",
     "size": 40,
     "price": 19.99

@@ -6,6 +6,12 @@
 
 .pizzaCard > img {
   width: 100%;
+  transition: transform 1s ease-in-out;
+  transition-delay: 1s;
+}
+
+.pizzaCard > img:hover {
+  transform: rotate(180deg) scale(1.6);
 }
 
 .pizzaCard > span {
