@@ -3,10 +3,11 @@ const cors = require("cors");
 const {graphqlHTTP} = require("express-graphql");
 const schema = require("./schema/index");
 
-const PORT = 3001;
+const ORIGIN = process.env.CLIENT || "http://localhost:3000";
+const PORT = process.env.PORT || 3001;
 const app = express();
 
-app.use(cors());
+app.use(cors({origin: ORIGIN}));
 app.use(express.static("public"));
 app.use(express.json());
 
