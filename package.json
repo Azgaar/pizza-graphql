@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": "14.x",
-    "npm": "6.x"
+    "node": "16.x",
+    "npm": "8.x",
+    "yarn": "1.x"
   },
   "scripts": {
-    "build": "cd server && npm install && npm start && cd ../client && npm install && npm run build",
+    "build": "cd client/ && yarn && yarn run build && cd ../server && npm install",
     "start": "node server/index.js"
   },
   "repository": {
