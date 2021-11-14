@@ -1,10 +1,13 @@
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 import {Textual} from "shared/text/Textual";
 import {ShoppingCardButton} from "./shoppingCardButton/ShoppingCardButton";
 import styles from "./Header.module.css";
 
 export const Header = () => {
+  const location = useLocation();
+  const ordersLink = location.pathname.includes("orders") ? "/" : "/orders";
+
   return (
     <header className="container">
       <div>
@@ -19,7 +22,7 @@ export const Header = () => {
         </div>
       </div>
       <div className={styles.buttons}>
-        <Link to="/orders">Orders</Link>
+        <Link to={ordersLink}>Orders</Link>
         <ShoppingCardButton />
       </div>
     </header>
