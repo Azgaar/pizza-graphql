@@ -2,7 +2,7 @@ const fs = require("fs");
 const {v4: uuidv4} = require("uuid");
 const {GraphQLObjectType, GraphQLNonNull, GraphQLList, GraphQLSchema} = require("graphql");
 
-const pizzasData = require("../data/pizzas.json");
+const pizzas = require("../data/pizzas.json");
 const orders = require("../data/orders.json");
 
 const PizzaType = require("./typeDefs/PizzaType");
@@ -14,7 +14,7 @@ const rootQuery = new GraphQLObjectType({
   fields: {
     pizzas: {
       type: GraphQLList(PizzaType),
-      resolve: () => pizzasData
+      resolve: () => pizzas
     },
     orders: {
       type: GraphQLList(OrderType),
@@ -35,24 +35,18 @@ const rootMutation = new GraphQLObjectType({
       },
       resolve: (_, {order}) => {
         const {totalPrice, totalAmount, orderedPizzas} = order;
-        const id = uuidv4();
-        const newOrder = {
-          id: id,
-          totalPrice: totalPrice,
-          totalAmount: totalAmount,
-          orderedPizzas: orderedPizzas
-        };
+        const newOrder = {id: uuidv4(), totalPrice, totalAmount, orderedPizzas};
         orders.push(newOrder);
-        fs.readFile("data/orders.json", "utf8", function readFileCallback(err, data) {
+
+        fs.readFile("data/orders.json", "utf8", (err, data) => {
           if (err) {
             console.error(err);
           } else {
-            ordersArr = JSON.parse(data);
-            ordersArr.push(newOrder);
-            json = JSON.stringify(ordersArr);
-            fs.writeFile("data/orders.json", json, "utf8", () => newOrder);
+            const orders = [...JSON.parse(data), newOrder];
+            fs.writeFile("data/orders.json", JSON.stringify(orders), "utf8", () => newOrder);
           }
         });
+
         return newOrder;
       }
     }
