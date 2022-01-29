@@ -11,6 +11,7 @@
   "author": "Daria Strokach",
   "license": "ISC",
   "dependencies": {
+    "@graphql-tools/schema": "^8.3.1",
     "@graphql-yoga/node": "^0.1.0-alpha.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
