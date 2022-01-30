@@ -1,25 +1,26 @@
+import {lazy, Suspense} from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-import {ShoppingCardProvider} from "context/ShoppingCardContext";
 import {Header} from "./components/header/Header";
 import {Main} from "./components/main/Main";
-import {MainContent} from "components/main/mainContent/MainContent";
-import {ShoppingCard} from "components/main/shoppingCard/ShoppingCard";
-import {Orders} from "components/main/orders/Orders";
+
+const MainContent = lazy(() => import("components/main/mainContent/MainContent"));
+const ShoppingCart = lazy(() => import("components/main/shoppingCart/ShoppingCart"));
+const Orders = lazy(() => import("components/main/orders/Orders"));
 
 function App() {
   return (
     <BrowserRouter>
-      <ShoppingCardProvider>
-        <Header />
-        <Main>
+      <Header />
+      <Main>
+        <Suspense fallback="...">
           <Routes>
-            <Route path="*" element={<MainContent />} />
-            <Route path="/card" element={<ShoppingCard />} />
+            <Route path="/cart" element={<ShoppingCart />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="*" element={<MainContent />} />
           </Routes>
-        </Main>
-      </ShoppingCardProvider>
+        </Suspense>
+      </Main>
     </BrowserRouter>
   );
 }

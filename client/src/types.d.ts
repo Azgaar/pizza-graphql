@@ -30,7 +30,7 @@ interface ICardData {
   size: TSize;
 }
 
-interface ICardElement extends ICardData {
+interface ICartElement extends ICardData {
   group: string;
   quantity: number;
 }

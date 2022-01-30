@@ -1,6 +1,6 @@
 import {useState, memo} from "react";
 
-import {useCard} from "context/ShoppingCardContext";
+import {addToCart} from "store/cart";
 import {Textual} from "shared/text/Textual";
 import {PizzaTypeButton} from "./pizzaTypeButton/PizzaTypeButton";
 import {Button} from "shared/button/Button";
@@ -13,7 +13,6 @@ import styles from "./PizzaCard.module.css";
 const PizzaCardComponent = ({pizza}: {pizza: IPizza}) => {
   const {id, name, image, modifications} = pizza;
   const {dough: initialDough, price: initialPrice, size: initialSize} = modifications[0];
-  const {add} = useCard();
 
   const [dough, setDough] = useState(initialDough);
   const [size, setSize] = useState(initialSize);
@@ -40,8 +39,8 @@ const PizzaCardComponent = ({pizza}: {pizza: IPizza}) => {
     return !available;
   };
 
-  const addToCard = () => {
-    add({id, name, dough, size, price, image});
+  const addElement = () => {
+    addToCart({id, name, dough, size, price, image});
   };
 
   return (
@@ -68,7 +67,7 @@ const PizzaCardComponent = ({pizza}: {pizza: IPizza}) => {
       </div>
       <div className={styles.bottomSection}>
         <Textual type="heading2">{displayPrice}</Textual>
-        <Button type="secondary" onClick={addToCard}>
+        <Button type="secondary" onClick={addElement}>
           + Add
         </Button>
       </div>
