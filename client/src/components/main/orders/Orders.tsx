@@ -13,8 +13,6 @@ const Orders = () => {
   const navigate = useNavigate();
 
   const {data, loading, error} = useQuery(GET_ORDERS, {
-    fetchPolicy: "network-only",
-    nextFetchPolicy: "cache-first",
     onError: error => console.error(error),
     onCompleted: data => console.table(data)
   });

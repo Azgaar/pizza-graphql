@@ -22,7 +22,8 @@ const ShoppingCart = () => {
 
   const [createOrder] = useMutation(CREATE_ORDER, {
     onError: error => console.error(error),
-    onCompleted: clearCart
+    onCompleted: clearCart,
+    refetchQueries: ["getOrders"]
   });
 
   const handleOrderCreate = () => {
@@ -31,9 +32,18 @@ const ShoppingCart = () => {
     });
 
     const order = {totalPrice, totalAmount, orderedPizzas};
-    createOrder({variables: {input: order}});
+    createOrder({
+      variables: {input: order},
+      optimisticResponse: {
+        __typename: "Query",
+        createOrder: {
+          id: "unknown",
+          __typename: "Order",
+          ...order
+        }
+      }
+    });
 
-    // TODO: optimistically update cache data
     navigate("/orders");
   };
 
