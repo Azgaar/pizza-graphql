@@ -1,14 +1,13 @@
 {
   "name": "pizza-graphql-backend",
   "version": "1.0.0",
-  "description": "A simple pizza graphql backend for homework",
+  "description": "Simple pizza graphql backend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
-  "author": "Daria Strokach",
+  "author": "Daria Strokach / Max Haniyeu",
   "license": "ISC",
   "dependencies": {
     "@graphql-tools/schema": "^8.3.1",

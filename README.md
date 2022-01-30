@@ -1,10 +1,18 @@
 # Pizza GraphQL
 
-Simple pizza monorepo application using [Create React App](https://facebook.github.io/create-react-app/) and [Apollo Client](https://www.apollographql.com/docs/react/) for [GraphQL](https://graphql.org/).
+Simple pizza [GraphQL](https://graphql.org/) monorepo application. The deployed application is available on [pizza-graphql.herokuapp.com](https://pizza-graphql.herokuapp.com/).
 
-[Express](https://expressjs.com) backend is prepared by [Daria Strokach](https://github.com/scarletcamomile/pizza-graphql-backend).
+Client:
 
-The application is available on [pizza-graphql.herokuapp.com](https://pizza-graphql.herokuapp.com/).
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://facebook.github.io/create-react-app/)
+- [Apollo Client](https://www.apollographql.com/docs/react/)
+
+Server:
+
+- [Express](https://expressjs.com)
+- [Graphql-yoga](https://github.com/dotansimha/graphql-yoga)
+- [Graphql-tools/schema](https://www.npmjs.com/package/@graphql-tools/schema)
 
 ![main_screen](https://user-images.githubusercontent.com/26469650/141659346-7c278b1a-3f75-4fb2-b077-489d4f749367.png)
 
