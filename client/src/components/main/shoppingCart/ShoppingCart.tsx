@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {useMutation, useReactiveVar} from "@apollo/client";
+import {gql, useMutation, useReactiveVar} from "@apollo/client";
 
 import {CREATE_ORDER} from "gql/createOrder";
 import {Textual} from "shared/text/Textual";
@@ -23,7 +23,24 @@ const ShoppingCart = () => {
   const [createOrder] = useMutation(CREATE_ORDER, {
     onError: error => console.error(error),
     onCompleted: clearCart,
-    refetchQueries: ["getOrders"]
+    update(cache, {data: {createOrder}}) {
+      cache.modify({
+        fields: {
+          orders(prevOrders = []) {
+            const newOrder = cache.writeFragment({
+              data: createOrder,
+              fragment: gql`
+                fragment NewOrder on Order {
+                  id
+                  type
+                }
+              `
+            });
+            return [...prevOrders, newOrder];
+          }
+        }
+      });
+    }
   });
 
   const handleOrderCreate = () => {
