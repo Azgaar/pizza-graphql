@@ -7,6 +7,9 @@ export const cache = new InMemoryCache({
     Pizza: {
       keyFields: ["name", "id"]
     },
+    Order: {
+      keyFields: ["id"]
+    },
     Query: {
       fields: {
         cart: {
