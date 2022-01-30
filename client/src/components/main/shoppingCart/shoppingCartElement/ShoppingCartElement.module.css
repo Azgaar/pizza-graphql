@@ -1,4 +1,4 @@
-.shoppingCardElement {
+.ShoppingCartElement {
   display: grid;
   align-items: center;
   grid-template-columns: 2fr 7fr 3fr 3fr 1fr;
@@ -7,12 +7,12 @@
   justify-items: center;
 }
 
-.shoppingCardElement > img {
+.ShoppingCartElement > img {
   width: 80px;
   height: 80px;
 }
 
-.shoppingCardElementInfo {
+.ShoppingCartElementInfo {
   display: flex;
   flex-direction: column;
   justify-self: flex-start;
@@ -46,14 +46,14 @@
 }
 
 @media (max-width: 420px) {
-  .shoppingCardElement {
+  .ShoppingCartElement {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
     height: 140px;
     position: relative;
   }
 
-  .shoppingCardElement > *:last-child {
+  .ShoppingCartElement > *:last-child {
     position: absolute;
     left: 90%;
     bottom: 3%;

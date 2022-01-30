@@ -1,28 +1,24 @@
 .emptyCard {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .emptyCardHeading {
-  margin-bottom: 20px;
+  margin-block: 20px;
 }
 
 .emptyCard > svg {
   margin: 40px 0;
 }
 
-.shoppingCard {
+.ShoppingCart {
   margin: 80px auto;
   max-width: 800px;
   padding: 0 40px;
 }
 
-.shoppingCardHead {
+.ShoppingCartHead {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -51,7 +47,7 @@
 }
 
 @media (max-width: 420px) {
-  .shoppingCard {
+  .ShoppingCart {
     margin: 40px auto;
   }
 
@@ -59,7 +55,7 @@
     flex-direction: column;
   }
 
-  .shoppingCardHead {
+  .ShoppingCartHead {
     flex-direction: column;
     align-items: flex-start;
     white-space: nowrap;

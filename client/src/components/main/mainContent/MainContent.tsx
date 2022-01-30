@@ -7,7 +7,7 @@ import {TFilter, TSort} from "types";
 import styles from "./MainContent.module.css";
 import {capitalize} from "utils/string";
 
-export const MainContent = () => {
+const MainContent = () => {
   const [filter, setFilter] = useState<TFilter>("all");
   const [sort, setSort] = useState<TSort>("popularity");
 
@@ -21,3 +21,5 @@ export const MainContent = () => {
     </div>
   );
 };
+
+export default MainContent;

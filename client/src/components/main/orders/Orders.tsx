@@ -9,7 +9,7 @@ import {formatCurrency} from "utils/price";
 import {IOrder} from "types";
 import styles from "./Orders.module.css";
 
-export const Orders = () => {
+const Orders = () => {
   const navigate = useNavigate();
 
   const {data, loading, error} = useQuery(GET_ORDERS, {
@@ -87,3 +87,5 @@ export const Orders = () => {
     </div>
   );
 };
+
+export default Orders;

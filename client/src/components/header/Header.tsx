@@ -1,7 +1,7 @@
 import {Link, useLocation} from "react-router-dom";
 
 import {Textual} from "shared/text/Textual";
-import {ShoppingCardButton} from "./shoppingCardButton/ShoppingCardButton";
+import {ShoppingCartButton} from "./shoppingCartButton/ShoppingCartButton";
 import styles from "./Header.module.css";
 
 export const Header = () => {
@@ -23,7 +23,7 @@ export const Header = () => {
       </div>
       <div className={styles.buttons}>
         <Link to={ordersLink}>Orders</Link>
-        <ShoppingCardButton />
+        <ShoppingCartButton />
       </div>
     </header>
   );
