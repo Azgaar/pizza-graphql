@@ -4,6 +4,9 @@ import {cartVar} from "../store/cart";
 
 export const cache = new InMemoryCache({
   typePolicies: {
+    Pizza: {
+      keyFields: ["name", "id"]
+    },
     Query: {
       fields: {
         cart: {
