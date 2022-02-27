@@ -5,10 +5,14 @@ const pizzas = require("../data/pizzas.json");
 const orders = require("../data/orders.json");
 const modifications = require("../data/modifications.json");
 
+const chats = [];
+const CHAT_CHANNEL = "CHAT_CHANNEL";
+
 const resolvers = {
   Query: {
     pizzas: () => pizzas,
-    orders: () => orders
+    orders: () => orders,
+    chats: (root, args, context) => chats
   },
 
   Pizza: {
@@ -31,6 +35,20 @@ const resolvers = {
       });
 
       return newOrder;
+    },
+
+    sendMessage(_, {from, message}, {pubsub}) {
+      const chat = {id: chats.length + 1, from, message};
+      chats.push(chat);
+      pubsub.publish("CHAT_CHANNEL", {messageSent: chat});
+
+      return chat;
+    }
+  },
+
+  Subscription: {
+    messageSent: {
+      subscribe: (_, __, {pubsub}) => pubsub.asyncIterator(CHAT_CHANNEL)
     }
   }
 };

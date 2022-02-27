@@ -31,13 +31,21 @@ const typeDefs = /* GraphQL */ `
     pizzaName: String!
   }
 
+  type Chat {
+    id: Int!
+    from: String!
+    message: String!
+  }
+
   type Query {
     pizzas: [Pizza]
     orders: [Order]
+    chats: [Chat]
   }
 
   type Mutation {
     createOrder(order: OrderInput): Order
+    sendMessage(from: String!, message: String!): Chat
   }
 
   input OrderInput {
@@ -52,6 +60,10 @@ const typeDefs = /* GraphQL */ `
     price: Float!
     amount: Int!
     pizzaName: String!
+  }
+
+  type Subscription {
+    messageSent: Chat
   }
 `;
 
