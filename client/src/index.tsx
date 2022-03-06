@@ -1,9 +1,8 @@
 import {StrictMode} from "react";
 import ReactDOM from "react-dom";
-import {ApolloClient, ApolloProvider, HttpLink, split} from "@apollo/client";
+import {ApolloClient, ApolloProvider, split, HttpLink} from "@apollo/client";
 import {getMainDefinition} from "@apollo/client/utilities";
-import {GraphQLWsLink} from "@apollo/client/link/subscriptions";
-import {createClient} from "graphql-ws";
+import {WebSocketLink} from "@apollo/link-ws";
 
 import App from "./App";
 import {cache} from "cache";
@@ -12,7 +11,7 @@ import reportWebVitals from "./reportWebVitals";
 import "./global.css";
 
 const httpLink = new HttpLink({uri: GRAPHQL_URL});
-const wsLink = new GraphQLWsLink(createClient({url: `ws://${GRAPHQL_URL}/subscriptions`}));
+const wsLink = new WebSocketLink({uri: `ws://${GRAPHQL_URL}`, options: {reconnect: true}});
 
 const link = split(
   ({query}) => {
