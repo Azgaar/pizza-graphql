@@ -6,13 +6,12 @@ const orders = require("../data/orders.json");
 const modifications = require("../data/modifications.json");
 
 const chats = [{id: 0, from: "Alice", message: "Hello, how can I help you?"}];
-const CHAT_CHANNEL = "CHAT_CHANNEL";
 
 const resolvers = {
   Query: {
     pizzas: () => pizzas,
     orders: () => orders,
-    chats: (root, args, context) => chats
+    chats: () => chats
   },
 
   Pizza: {
@@ -38,9 +37,10 @@ const resolvers = {
     },
 
     sendMessage(_, {from, message}, {pubsub}) {
-      const chat = {id: chats.length + 1, from, message};
+      const chat = {id: uuidv4(), from, message};
       chats.push(chat);
-      pubsub.publish("CHAT_CHANNEL", {messageSent: chat});
+      console.log(chat);
+      pubsub.publish("messageSent", {messageSent: chat});
 
       return chat;
     }
@@ -48,7 +48,10 @@ const resolvers = {
 
   Subscription: {
     messageSent: {
-      subscribe: (_, __, {pubsub}) => pubsub.asyncIterator(CHAT_CHANNEL)
+      subscribe: (root, args, {pubsub}) => {
+        console.log(pubsub);
+        return pubsub.subscribe("messageSent");
+      }
     }
   }
 };

@@ -17,9 +17,9 @@ export const ChatBox = () => {
       updateQuery: (prev, {subscriptionData}) => {
         if (!subscriptionData) return prev;
 
-        const newMessage = subscriptionData.data?.newMessage;
+        const messageSent = subscriptionData.data?.newMessage;
         const updatedMessageList = Object.assign({}, prev, {
-          messages: [...prev.messages, newMessage]
+          messages: [...prev.messages, messageSent]
         });
         return updatedMessageList;
       }

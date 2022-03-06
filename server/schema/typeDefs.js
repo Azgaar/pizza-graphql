@@ -32,7 +32,7 @@ const typeDefs = /* GraphQL */ `
   }
 
   type Chat {
-    id: Int!
+    id: ID!
     from: String!
     message: String!
   }
