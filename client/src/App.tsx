@@ -1,8 +1,9 @@
 import {lazy, Suspense} from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-import {Header} from "./components/header/Header";
-import {Main} from "./components/main/Main";
+import {Header} from "components/header/Header";
+import {Main} from "components/main/Main";
+import {Chat} from "components/main/chat/Chat";
 
 const MainContent = lazy(() => import("components/main/mainContent/MainContent"));
 const ShoppingCart = lazy(() => import("components/main/shoppingCart/ShoppingCart"));
@@ -19,6 +20,7 @@ function App() {
             <Route path="/orders" element={<Orders />} />
             <Route path="*" element={<MainContent />} />
           </Routes>
+          <Chat />
         </Suspense>
       </Main>
     </BrowserRouter>
