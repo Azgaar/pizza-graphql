@@ -5,7 +5,7 @@ const pizzas = require("../data/pizzas.json");
 const orders = require("../data/orders.json");
 const modifications = require("../data/modifications.json");
 
-const chats = [];
+const chats = [{id: 0, from: "Alice", message: "Hello, how can I help you?"}];
 const CHAT_CHANNEL = "CHAT_CHANNEL";
 
 const resolvers = {

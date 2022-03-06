@@ -2,7 +2,7 @@ import {StrictMode} from "react";
 import ReactDOM from "react-dom";
 import {ApolloClient, ApolloProvider, split, HttpLink} from "@apollo/client";
 import {getMainDefinition} from "@apollo/client/utilities";
-import {WebSocketLink} from "@apollo/link-ws";
+import {WebSocketLink} from "@apollo/client/link/ws";
 
 import App from "./App";
 import {cache} from "cache";

@@ -1,37 +1,42 @@
-import {useRef, FormEventHandler} from "react";
+import {useEffect} from "react";
+import {useQuery} from "@apollo/client";
 
+import {ChatInput} from "./ChatInput";
 import styles from "./ChatBox.module.css";
-
-const messages = [
-  "Hello, how can we help you?",
-  "Please explain how I can buy a pizza",
-  "Just select the size and toppings you want",
-  "Thank you for your help"
-];
+import {GET_MESSAGES} from "gql/getMessages";
+import {MESSAGE_SENT} from "gql/messageSent";
+import {IMessage} from "./types";
 
 export const ChatBox = () => {
-  const input = useRef<HTMLInputElement>(null);
+  const {data, loading, subscribeToMore} = useQuery(GET_MESSAGES);
+  const chat = (data?.chats || []) as IMessage[];
 
-  const sendMessage: FormEventHandler<HTMLFormElement> = event => {
-    event.preventDefault();
-    const message = input.current?.value;
-    if (message) {
-      input.current.value = "";
-      console.log(message);
-    }
-  };
+  useEffect(() => {
+    subscribeToMore({
+      document: MESSAGE_SENT,
+      updateQuery: (prev, {subscriptionData}) => {
+        if (!subscriptionData) return prev;
+
+        const newMessage = subscriptionData.data?.newMessage;
+        const updatedMessageList = Object.assign({}, prev, {
+          messages: [...prev.messages, newMessage]
+        });
+        return updatedMessageList;
+      }
+    });
+  }, [subscribeToMore]);
 
   return (
     <section className={styles.chatBox}>
       <div className={styles.messages}>
-        {messages.map((message, index) => (
-          <div key={index}>{message}</div>
+        {loading && <p>Loading...</p>}
+        {chat.map(({id, from, message}) => (
+          <div key={id}>
+            {from}: {message}
+          </div>
         ))}
       </div>
-      <form className={styles.chatInput} onSubmit={sendMessage}>
-        <input ref={input} placeholder="Type your message" />
-        <button type="submit">Send</button>
-      </form>
+      <ChatInput />
     </section>
   );
 };
