@@ -1,7 +1,7 @@
 const client = require("./client-server");
 const graphql = require("./graphql-server");
 
-const CLIENT_APP_PORT = process.env.CLIENT_APP_PORT || 3000;
+const CLIENT_APP_PORT = process.env.PORT || 3000;
 const GRAPHQL_PORT = process.env.GRAPHQL_PORT || 3001;
 
 client.listen(CLIENT_APP_PORT, () => {
