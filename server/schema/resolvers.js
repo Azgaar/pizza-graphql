@@ -1,11 +1,10 @@
-const fs = require("fs");
 const {v4: uuidv4} = require("uuid");
 
+const addToFile = require("./utils");
 const pizzas = require("../data/pizzas.json");
 const orders = require("../data/orders.json");
 const modifications = require("../data/modifications.json");
-
-const messages = [{id: uuidv4(), from: "Alice", message: "Hello, how can I help you?"}];
+const messages = require("../data/messages.json");
 
 const resolvers = {
   Query: {
@@ -24,15 +23,7 @@ const resolvers = {
       const newOrder = {id: uuidv4(), totalPrice, totalAmount, orderedPizzas};
       orders.push(newOrder);
 
-      fs.readFile("data/orders.json", "utf8", (err, data) => {
-        if (err) {
-          console.error(err);
-        } else {
-          const orders = [...JSON.parse(data), newOrder];
-          fs.writeFile("data/orders.json", JSON.stringify(orders), "utf8", () => newOrder);
-        }
-      });
-
+      addToFile("data/orders.json", newOrder);
       return newOrder;
     },
 
@@ -41,6 +32,7 @@ const resolvers = {
       messages.push(messageSent);
       pubsub.publish("messageSent", {messageSent});
 
+      // addToFile("data/messages.json", messageSent);
       return messageSent;
     }
   },

@@ -10,6 +10,9 @@ export const cache = new InMemoryCache({
     Order: {
       keyFields: ["id"]
     },
+    Message: {
+      keyFields: ["id"]
+    },
     Query: {
       fields: {
         cart: {
