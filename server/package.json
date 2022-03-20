@@ -4,10 +4,8 @@
   "description": "Simple pizza graphql backend",
   "main": "index.js",
   "scripts": {
-    "dev": "start nodemon client-server.js && start nodemon graphql-server.js",
-    "start": "start node client-server.js && start node graphql-server.js",
-    "start-client": "node client-server.js",
-    "start-graphql": "node graphql-server.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "author": "Max Haniyeu (based on Daria Strokach's project)",
   "license": "ISC",
