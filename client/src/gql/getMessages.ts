@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const GET_MESSAGES = gql`
-  query ChatsQuery {
-    chats {
+  query MessagesQuery {
+    messages {
       id
       from
       message

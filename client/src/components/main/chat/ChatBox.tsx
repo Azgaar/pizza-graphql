@@ -9,19 +9,16 @@ import {IMessage} from "./types";
 
 export const ChatBox = () => {
   const {data, loading, subscribeToMore} = useQuery(GET_MESSAGES);
-  const chat = (data?.chats || []) as IMessage[];
+  const messages = (data?.messages || []) as IMessage[];
 
   useEffect(() => {
     subscribeToMore({
       document: MESSAGE_SENT,
       updateQuery: (prev, {subscriptionData}) => {
-        if (!subscriptionData) return prev;
-
-        const messageSent = subscriptionData.data?.newMessage;
-        const updatedMessageList = Object.assign({}, prev, {
-          messages: [...prev.messages, messageSent]
-        });
-        return updatedMessageList;
+        if (!subscriptionData || !subscriptionData.data) return prev;
+        const messageSent = subscriptionData.data.messageSent;
+        const updatedMessages = Object.assign({}, prev, {messages: [...prev.messages, messageSent]});
+        return updatedMessages;
       }
     });
   }, [subscribeToMore]);
@@ -30,7 +27,7 @@ export const ChatBox = () => {
     <section className={styles.chatBox}>
       <div className={styles.messages}>
         {loading && <p>Loading...</p>}
-        {chat.map(({id, from, message}) => (
+        {messages.map(({id, from, message}) => (
           <div key={id}>
             {from}: {message}
           </div>

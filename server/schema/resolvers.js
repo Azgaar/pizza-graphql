@@ -5,13 +5,13 @@ const pizzas = require("../data/pizzas.json");
 const orders = require("../data/orders.json");
 const modifications = require("../data/modifications.json");
 
-const chats = [{id: 0, from: "Alice", message: "Hello, how can I help you?"}];
+const messages = [{id: uuidv4(), from: "Alice", message: "Hello, how can I help you?"}];
 
 const resolvers = {
   Query: {
     pizzas: () => pizzas,
     orders: () => orders,
-    chats: () => chats
+    messages: () => messages
   },
 
   Pizza: {
@@ -37,19 +37,17 @@ const resolvers = {
     },
 
     sendMessage(_, {from, message}, {pubsub}) {
-      const chat = {id: uuidv4(), from, message};
-      chats.push(chat);
-      console.log(chat);
-      pubsub.publish("messageSent", {messageSent: chat});
+      const messageSent = {id: uuidv4(), from, message};
+      messages.push(messageSent);
+      pubsub.publish("messageSent", {messageSent});
 
-      return chat;
+      return messageSent;
     }
   },
 
   Subscription: {
     messageSent: {
       subscribe: (root, args, {pubsub}) => {
-        console.log(pubsub);
         return pubsub.subscribe("messageSent");
       }
     }
