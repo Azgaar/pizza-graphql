@@ -14,8 +14,7 @@ interface IPizzasProps {
 
 export const Pizzas = ({filter, sort}: IPizzasProps) => {
   const {data, loading, error} = useQuery(GET_PIZZAS, {
-    onError: error => console.error(error),
-    onCompleted: data => console.table(data.pizzas)
+    onError: error => console.error(error)
   });
 
   const [pizzas, setPizzas] = useState<IPizza[]>([]);

@@ -1,0 +1,46 @@
+.chatButton {
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+  width: 80px;
+  height: 80px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  border: 0;
+  box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%);
+  transition: all 0.1s ease;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.chatButton:hover {
+  filter: brightness(70%);
+  transition: all 0.1s ease;
+}
+
+.chatButton:active {
+  transform: translateY(1px);
+}
+
+.chatButton > svg {
+  width: 40px;
+  height: 40px;
+  fill: white;
+  stroke: #666;
+  stroke-width: 3;
+}
+
+@media (max-width: 600px) {
+  .chatButton {
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .chatButton > svg {
+    width: 30px;
+    height: 30px;
+  }
+}

@@ -13,8 +13,7 @@ const Orders = () => {
   const navigate = useNavigate();
 
   const {data, loading, error} = useQuery(GET_ORDERS, {
-    onError: error => console.error(error),
-    onCompleted: data => console.table(data)
+    onError: error => console.error(error)
   });
 
   const orders = data?.orders as IOrder[];
