@@ -1,6 +1,8 @@
 const {v4: uuidv4} = require("uuid");
 
-const addToFile = require("./utils");
+const addToFile = require("../utils/file");
+const respond = require("../utils/responder");
+
 const pizzas = require("../data/pizzas.json");
 const orders = require("../data/orders.json");
 const modifications = require("../data/modifications.json");
@@ -32,7 +34,10 @@ const resolvers = {
       messages.push(messageSent);
       pubsub.publish("messageSent", {messageSent});
 
-      // addToFile("data/messages.json", messageSent);
+      respond(message, responce => {
+        messages.push(responce);
+        pubsub.publish("messageSent", {messageSent: responce});
+      });
       return messageSent;
     }
   },
