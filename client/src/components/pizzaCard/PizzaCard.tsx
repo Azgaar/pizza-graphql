@@ -5,7 +5,7 @@ import {Textual} from "shared/text/Textual";
 import {PizzaTypeButton} from "./pizzaTypeButton/PizzaTypeButton";
 import {Button} from "shared/button/Button";
 import {formatCurrency, getPrice} from "utils/price";
-import {IMAGES_URL} from "config/paths";
+import {IMAGES_FOLDER} from "config/paths";
 import {doughTypes, sizeTypes, sizeUnit} from "config/modifications";
 import {IPizza, TDough, TSize} from "types";
 import styles from "./PizzaCard.module.css";
@@ -45,7 +45,7 @@ const PizzaCardComponent = ({pizza}: {pizza: IPizza}) => {
 
   return (
     <div className={styles.pizzaCard}>
-      <img src={`${IMAGES_URL}/${image}`} alt={name} />
+      <img src={`${IMAGES_FOLDER}/${image}`} alt={name} />
       <Textual type="heading2">{name}</Textual>
       <div className={styles.pizzaType}>
         <div>

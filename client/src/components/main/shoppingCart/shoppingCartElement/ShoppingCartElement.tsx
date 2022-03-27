@@ -1,7 +1,7 @@
 import {decreaseCartItem, increaseCartItem, removeFromCart} from "store/cart";
 import {Textual} from "shared/text/Textual";
 import {roundPrice, formatCurrency} from "utils/price";
-import {IMAGES_URL} from "config/paths";
+import {IMAGES_FOLDER} from "config/paths";
 import {ICartElement} from "types";
 import {sizeUnit} from "config/modifications";
 import styles from "./ShoppingCartElement.module.css";
@@ -25,7 +25,7 @@ export const ShoppingCartElement = ({group, name, image, price, dough, size, qua
 
   return (
     <div className={styles.ShoppingCartElement}>
-      <img src={`${IMAGES_URL}/${image}`} alt={name} />
+      <img src={`${IMAGES_FOLDER}/${image}`} alt={name} />
       <div className={styles.ShoppingCartElementInfo}>
         <Textual type="heading2">{name}</Textual>
         <Textual type="secondary">

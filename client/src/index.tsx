@@ -5,13 +5,13 @@ import {getMainDefinition} from "@apollo/client/utilities";
 
 import App from "./App";
 import {cache} from "cache";
-import {GRAPHQL_URL} from "config/paths";
+import {GRAPHQL_SERVER} from "config/paths";
 import {SSELink} from "sseLink";
 import reportWebVitals from "./reportWebVitals";
 import "./global.css";
 
-const httpLink = new HttpLink({uri: GRAPHQL_URL});
-const sseLink = new SSELink({url: GRAPHQL_URL});
+const httpLink = new HttpLink({uri: GRAPHQL_SERVER});
+const sseLink = new SSELink({url: GRAPHQL_SERVER});
 
 const link = split(
   ({query}) => {
