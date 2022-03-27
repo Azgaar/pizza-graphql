@@ -1,6 +1,6 @@
 # Pizza GraphQL
 
-Simple pizza [GraphQL](https://graphql.org/) monorepo application. The deployed application is available on [pizza-graphql.herokuapp.com](https://pizza-graphql.herokuapp.com/).
+Simple pizza [GraphQL](https://graphql.org/) monorepo application. The deployed client is available on [pizza-graphql.netlify.app](https://pizza-graphql.netlify.app/). GraphQL server is deployed to [pizza-graphql.herokuapp.com/graphql](https://pizza-graphql.herokuapp.com/graphqlhttps://pizza-graphql.netlify.app/).
 
 Client:
 
@@ -8,7 +8,7 @@ Client:
 - [React](https://facebook.github.io/create-react-app/)
 - [Apollo Client](https://www.apollographql.com/docs/react/)
 
-Server:
+GraphQL Server:
 
 - [Express](https://expressjs.com)
 - [Graphql-yoga](https://github.com/dotansimha/graphql-yoga)
@@ -22,7 +22,9 @@ Server:
 
 - NodeJS
 
-## Local Installation of Client
+## Local Installation
+
+**Client:**
 
 ```
 cd client
@@ -32,7 +34,7 @@ yarn start
 
 Go to the client page: `localhost:3000`
 
-## Local Installation of Server
+**Server:**
 
 ```
 cd server
@@ -40,18 +42,18 @@ npm install
 npm run dev
 ```
 
-Go to the graphql playground: `localhost:3001/graphql`
+Go to the GraphQL playground: `localhost:3001/graphql`
 
 ## Deployment
 
-The app is a monorepo, so client and server are deployed to the same Heroku app.
+Client is React (CRA) app. Build the app and deploy to any server and set up the only requred variable:
 
-Express serves public files (`/public/images`), GraphQL backend (`/graphQL`) and client application (from root).
+```
+REACT_APP_GRAPHQL_SERVER = graphql server url
+```
 
-To deploy the application, make sure the following environment variables are set:
+GraphQL server doesn't require build step and can be deployed to any server. Set up CLIENT variable to point to the client URL:
 
 ```
 CLIENT = client url
-PORT = port number
-REACT_APP_SERVER_URI = server url
 ```
