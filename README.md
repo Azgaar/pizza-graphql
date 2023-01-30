@@ -1,6 +1,6 @@
 # Pizza GraphQL
 
-Simple pizza [GraphQL](https://graphql.org/) monorepo application. The deployed client is available on [pizza-graphql.netlify.app](https://pizza-graphql.netlify.app/). GraphQL server is deployed to [pizza-graphql.herokuapp.com/graphql](https://pizza-graphql.herokuapp.com/graphqlhttps://pizza-graphql.netlify.app/).
+Simple pizza [GraphQL](https://graphql.org/) monorepo application. The deployed client is available on [pizza-graphql.netlify.app](https://pizza-graphql.netlify.app/). GraphQL server is deployed to [pizza-graphql.vercel.app/graphql](https://pizza-graphql.vercel.app/graphql).
 
 Client:
 
